@@ -1,0 +1,152 @@
+# Native SDF Tree
+# Constructed using Primitive Cones and Smooth Unions
+# NO Type 11 (Legacy Tree)
+# NO Type 2 (Cylinders)
+
+Camera:
+  Pos: [0, 2.5, 6]
+  LookAt: [0, 2.0, 0]
+  FOV: 60
+
+EnvironmentMap: "../assets/hdri/forest.jpg" # Optional, might not exist, but parser handles it
+
+Materials:
+  - Color: [0.36, 0.25, 0.20] # Bark Brown
+    Metallic: 0.0
+    Roughness: 0.9
+    Bump: 0.5 # Procedural bark texture
+    Displacement: 0.05 # Add some noise to surface
+
+  - Color: [0.1, 0.4, 0.1] # Leaves Green
+    Metallic: 0.0
+    Roughness: 0.4
+    SSS: 0.2
+
+Objects:
+  # TRUNK
+  # Cone logic: Vertex at Origin, Base at -Height (along Y)
+  # To make trunk from 0 to 3.5:
+  # Vertex at 3.5, Base at 0.
+  # So Position should be [0, 3.5, 0].
+  # Scale: [sin(theta), cos(theta), Height]
+  # Height = 3.5
+  # Base Radius = 0.5
+  # tan(theta) = 0.5 / 3.5 = 0.1428
+  # theta = 8.13 deg
+  # sin(8.13) = 0.141
+  # cos(8.13) = 0.990
+  - Type: 7 # SHAPE_CONE
+    Op: 0   # UNION (Start of shape)
+    Mat: 0  # Bark
+    Pos: [0, 3.5, 0]
+    Rot: [0, 0, 0]
+    Scale: [0.141, 0.990, 3.5]
+
+  # BRANCH 1
+  # Height = 1.5
+  # Base Radius = 0.25
+  # tan = 0.25/1.5 = 0.166
+  # theta = 9.46 deg
+  # sin = 0.164
+  # cos = 0.986
+  # Connection Point on Trunk: Y=1.5
+  # We want Base at (0, 1.5, 0).
+  # We want it to angle out by 45 deg around Z.
+  # Rotation: [0, 0, -45] (Rotates the -Y axis to -Y rotated by -45? Need to check rotation order)
+  # Standard Cone points -Y.
+  # Rot Z -45: Points to (-Y, +X). i.e. Down-Right.
+  # We want it to point UP-Right.
+  # So initial vector (0, -1, 0). Target (0.7, 0.7, 0).
+  # That is 135 degrees.
+  # Rot Z 135?
+  # Or Rot Z -135?
+  # Let's try [0, 0, 135].
+  # Position: We need to position it such that the Base is at (0, 1.5, 0).
+  # The "Pos" in YAML is the translation applied AFTER rotation? Or BEFORE?
+  # Parser: T @ R. So Rotate then Translate.
+  # Local Base is at (0, -H, 0).
+  # Local Vertex is at (0, 0, 0).
+  # Wait, earlier I said "Vertex at Origin, Base at -Height".
+  # For Trunk: Pos [0, 3.5, 0] -> Vertex at 3.5 (World), Base at 3.5 - 3.5 = 0. Correct.
+  # For Branch: We want Base at trunk connection.
+  # So we need Local Base (0, -H, 0) to be at Connection Point (0, 1.5, 0).
+  # If we just translate, Vertex will be at (0, 1.5+H, 0).
+  # We want Vertex to be AWAY from trunk.
+  # If we rotate 135 deg Z.
+  # (0, -1, 0) becomes (0.7, 0.7, 0). Points Up-Right.
+  # Base is at R * (0, -H, 0) = R * (0, -1.5, 0) ?
+  # No, Base is (0, -1.5, 0) in local.
+  # Rotated: (1.06, 1.06, 0).
+  # Then Translate P.
+  # World Base = P + (1.06, 1.06, 0).
+  # We want World Base = (0, 1.5, 0).
+  # So P = (0, 1.5, 0) - (1.06, 1.06, 0) = (-1.06, 0.44, 0).
+  # This calculation is tedious.
+  # Alternative:
+  # Use Cone defined from 0 to H (pointing UP).
+  # sdCone points DOWN.
+  # Rotate X 180. Now points UP. Vertex 0. Base H.
+  # We want thick at bottom. Trunk: Base at 0, Vertex at H.
+  # If we use Rot X 180. Vertex at 0. Base at H.
+  # Radius at Vertex is 0. Radius at Base is R.
+  # So this is Thick Top, Thin Bottom. Upside down tree.
+  # So "Cone points DOWN" (default) is actually perfect for "Thick Base, Thin Tip" if we view "Tip" as the end of the branch.
+  # Tip at 0. Base at -H.
+  # Branch grows FROM Trunk.
+  # So Base at Trunk, Tip away.
+  # So we place Base at Trunk.
+  # Base is at (0, -H, 0).
+  # We want Base at `ConnectPoint`.
+  # `ConnectPoint = P + R * (0, -H, 0)`.
+  # `P = ConnectPoint - R * (0, -H, 0)`.
+  # `R * (0, -H, 0)` is the vector from Tip to Base in world space (relative to P).
+  # Tip is at P.
+  # So P is the Tip position.
+  # We want the TIP to be away.
+  # So P = Tip Position.
+  # Where is the tip?
+  # Base at (0, 1.5, 0).
+  # Vector direction D = (sin 45, cos 45, 0).
+  # Length L = 1.5.
+  # Tip = Base + L * D = (0, 1.5, 0) + (1.06, 1.06, 0) = (1.06, 2.56, 0).
+  # So P = (1.06, 2.56, 0).
+  # Rotation: We want Local -Y axis to align with -D?
+  # Cone points -Y. We want it to point -D (from Tip to Base).
+  # D points Base to Tip.
+  # So we want -Y to align with -D. i.e. +Y aligns with +D.
+  # D is (0.7, 0.7, 0). 45 degrees Z.
+  # So Rot = [0, 0, -45].
+  # Let's verify.
+  # Rot Z -45.
+  # Y axis (0,1,0) -> (sin 45, cos 45, 0) = (0.7, 0.7, 0). Correct.
+  # So Rot: [0, 0, -45].
+  # Pos: Tip position.
+  # Tip = Base + D * L = (0, 1.5, 0) + (0.7, 0.7, 0) * 1.5 = (1.06, 2.56, 0).
+
+  - Type: 7
+    Op: 3   # SMOOTH UNION
+    Mat: 0
+    Pos: [1.06, 2.56, 0]
+    Rot: [0, 0, -45]
+    Scale: [0.164, 0.986, 1.5]
+
+  # BRANCH 2
+  # Height = 1.2
+  # Base Radius = 0.2
+  # tan = 0.2/1.2 = 0.166 (Same angle!)
+  # Scale: [0.164, 0.986, 1.2]
+  # Connect at Y=2.2.
+  # Direction: -60 degrees Z.
+  # D = (sin -60, cos -60, 0) = (-0.866, 0.5, 0).
+  # Rot Z 60.
+  # Y axis -> (-0.866, 0.5, 0). Correct.
+  # Rot: [0, 0, 60]
+  # Base = (0, 2.2, 0).
+  # Tip = Base + D * L = (0, 2.2, 0) + (-0.866, 0.5, 0) * 1.2 = (-1.04, 2.8, 0).
+
+  - Type: 7
+    Op: 3   # SMOOTH UNION
+    Mat: 0
+    Pos: [-1.04, 2.8, 0]
+    Rot: [0, 0, 60]
+    Scale: [0.164, 0.986, 1.2]
