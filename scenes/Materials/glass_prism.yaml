@@ -1,0 +1,22 @@
+Camera:
+  Pos: [0, 2, 4.2]
+  LookAt: [0, 1, 0]
+  FOV: 48
+
+Materials:
+  - Color: [0.98, 0.99, 1.0] # Ultra-subtle Blue Tint
+    Metallic: 0.0  # Never metallic for glass
+    Roughness: 0.015  # Ultra-smooth for caustics
+    Transmission: 0.75  # More transparent - realistic glass
+    IOR: 1.52
+  - Color: [0.02, 0.02, 0.02] # Almost pure black floor
+    Metallic: 0.0
+    Roughness: 0.8
+
+Objects:
+  # Glass Prism - Maximum Realism
+  - Type: 1 # Box
+    Pos: [0, 1.0, 0]
+    Rot: [0, 0.785, 0.15]  # Optimal refraction angle
+    Scale: [1.5, 1.9, 1.5]
+    Mat: 0

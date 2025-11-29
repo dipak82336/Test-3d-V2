@@ -1,0 +1,38 @@
+Camera:
+  Pos: [0, 1.5, 3.0]
+  LookAt: [0, 0.5, 0]
+  FOV: 45
+
+Materials:
+  # Mat 0: MARBLE (SSS)
+  - Color: [1.0, 0.9, 0.8] # Creamy White
+    Metallic: 0.0
+    Roughness: 0.4  # Smooth polish
+    Transmission: 0.2 # Slight transparency
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.5
+    SSS: 1.0 # Enable Subsurface Scattering
+    Bump: 0.0
+
+  # Mat 1: FLOOR
+  - Color: [0.2, 0.2, 0.2]
+    Metallic: 0.0
+    Roughness: 1.0
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.0
+    SSS: 0.0
+    Bump: 0.0
+
+Objects:
+  # Marble Sphere
+  - Type: 0 # Sphere
+    Pos: [0, 0.5, 0]
+    Scale: [0.5, 0.5, 0.5]
+    Mat: 0
+
+  # Floor
+  - Type: 1 # Box
+    Pos: [0, -1.0, 0]
+    Scale: [10, 1, 10]
+    Mat: 1

@@ -1,0 +1,22 @@
+Camera:
+  Pos: [2.0, 2.0, 2.0]
+  LookAt: [0.0, 0.0, 0.0]
+  FOV: 45.0
+
+EnvironmentMap: ../textures/studio_small.jpg
+
+Materials:
+  - Color: [1.0, 1.0, 1.0]
+    AlbedoMap: ../textures/brick_albedo.png
+    RoughnessMap: ../textures/brick_roughness.png
+    NormalMap: ../textures/brick_normal.png
+    Roughness: 1.0
+    Metallic: 0.0
+    UVScale: 2.0
+
+Objects:
+  - Type: 1 # Box
+    Pos: [0.0, 0.0, 0.0]
+    Scale: [1.0, 1.0, 1.0] # Size
+    Mat: 0
+    Op: 0

@@ -1,0 +1,23 @@
+Objects:
+  - Type: 1 # Box
+    Pos: [0, 0, 0]
+    Scale: [1, 1, 1]
+    Mat: 0
+
+Materials:
+  - Color: [1.0, 1.0, 1.0] # White base, modulated by texture
+    Metallic: 0.0
+    Roughness: 1.0 # Modulated by texture
+    AlbedoMap: textures/brick_albedo.png
+    RoughnessMap: textures/brick_roughness.png
+    NormalMap: textures/brick_normal.png
+
+Lights:
+  - Pos: [2, 4, 4]
+    Color: [1, 1, 1]
+    Intensity: 2.0
+
+Camera:
+  Pos: [2, 2, 2]
+  LookAt: [0, 0, 0]
+  FOV: 45

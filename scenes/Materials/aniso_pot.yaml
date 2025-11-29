@@ -1,0 +1,44 @@
+Camera:
+  Pos: [0, 2.0, 3.0]
+  LookAt: [0, 0.5, 0]
+  FOV: 45
+
+Materials:
+  # Mat 0: BRUSHED METAL (Anisotropic)
+  - Color: [0.7, 0.7, 0.7] # Steel Grey
+    Metallic: 1.0 # Fully Metallic
+    Roughness: 0.4 # Medium Roughness
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.5
+    SSS: 0.0
+    Bump: 0.0
+    ClearCoat: 0.0
+    Anisotropic: 0.9 # Strong Anisotropy (Stretched Highlight)
+    AnisoRot: 0.0
+
+  # Mat 1: FLOOR
+  - Color: [0.2, 0.2, 0.2]
+    Metallic: 0.0
+    Roughness: 1.0
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.0
+    SSS: 0.0
+    Bump: 0.0
+    ClearCoat: 0.0
+    Anisotropic: 0.0
+    AnisoRot: 0.0
+
+Objects:
+  # Brushed Pot (Cylinder)
+  - Type: 2 # Cylinder
+    Pos: [0, 0.5, 0]
+    Scale: [0.8, 0.4, 0.8] # Wide cylinder
+    Mat: 0
+
+  # Floor
+  - Type: 1 # Box
+    Pos: [0, -1.0, 0]
+    Scale: [10, 1, 10]
+    Mat: 1

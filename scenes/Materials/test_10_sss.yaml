@@ -1,0 +1,20 @@
+Objects:
+  - Type: 0 # Sphere
+    Pos: [0, 0, 0]
+    Scale: [1, 1, 1]
+    Mat: 0
+
+Materials:
+  - Color: [1.0, 0.9, 0.8] # Skin/Marble tone
+    SSS: 1.0
+    Roughness: 0.4
+
+Lights:
+  - Pos: [0, 2, 4] # Back/Top lighting to show SSS effect
+    Color: [1, 1, 1]
+    Intensity: 3.0
+
+Camera:
+  Pos: [0, 0, -5]
+  LookAt: [0, 0, 0]
+  FOV: 45

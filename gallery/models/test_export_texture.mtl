@@ -1,0 +1,11 @@
+# Material Library for test_export_texture.obj
+
+newmtl mat_0
+Kd 0.9000 0.9000 0.9000
+Ks 0.0000 0.0000 0.0000
+Ns 0.0000
+Ka 0.2700 0.2700 0.2700
+d 1.0
+illum 2
+map_Kd brick_albedo.png
+map_Bump brick_normal.png

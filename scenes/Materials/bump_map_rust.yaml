@@ -1,0 +1,38 @@
+Camera:
+  Pos: [0, 1.5, 3.0]
+  LookAt: [0, 0.5, 0]
+  FOV: 45
+
+Materials:
+  # Mat 0: RUSTED METAL (Bump)
+  - Color: [0.6, 0.3, 0.1] # Rust Orange/Brown
+    Metallic: 0.8 # Still metallic underneath
+    Roughness: 0.8 # Rough surface
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.5
+    SSS: 0.0
+    Bump: 1.0 # Enable Procedural Bump Mapping
+
+  # Mat 1: FLOOR
+  - Color: [0.2, 0.2, 0.2]
+    Metallic: 0.0
+    Roughness: 1.0
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.0
+    SSS: 0.0
+    Bump: 0.0
+
+Objects:
+  # Rusted Box
+  - Type: 3 # RoundBox
+    Pos: [0, 0.5, 0]
+    Scale: [0.5, 0.5, 0.5]
+    Mat: 0
+
+  # Floor
+  - Type: 1 # Box
+    Pos: [0, -1.0, 0]
+    Scale: [10, 1, 10]
+    Mat: 1

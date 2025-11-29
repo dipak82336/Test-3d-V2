@@ -1,0 +1,22 @@
+Objects:
+  - Type: 2 # Cylinder
+    Pos: [0, 0, 0]
+    Scale: [1.0, 0.2, 0] # Flat disk
+    Mat: 0
+
+Materials:
+  - Color: [0.8, 0.8, 0.8]
+    Metallic: 1.0
+    Roughness: 0.3
+    Anisotropic: 0.9
+    AnisoRot: 0.0
+
+Lights:
+  - Pos: [2, 4, 4]
+    Color: [1, 1, 1]
+    Intensity: 2.0
+
+Camera:
+  Pos: [0, 3, 3] # Top-down view
+  LookAt: [0, 0, 0]
+  FOV: 45

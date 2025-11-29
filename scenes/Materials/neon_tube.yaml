@@ -1,0 +1,21 @@
+Camera:
+  Pos: [0, 1.2, 4.0]
+  LookAt: [0, 1.2, 0]
+  FOV: 50
+
+Materials:
+  # Mat 0: THE CORE (VOLUMETRIC EMITTER)
+  - Color: [0.0, 1.0, 0.0] # Pure Green
+    Metallic: 0.0
+    Roughness: 1.0  # NO REFLECTIONS
+    Transmission: 0.0  # OPAQUE
+    Emission: [0.2, 2.0, 20.0] # Electric Blue (Core stays White, Glow becomes Blue)
+    IOR: 1.0
+
+Objects:
+  # 1. The Plasma Core (Vertical Torus)
+  - Type: 5 # Torus
+    Pos: [0, 1.2, 0]
+    Rot: [1.57, 0, 0] # Rotated 90 degrees (Standing Up)
+    Scale: [1.0, 0.07, 0]
+    Mat: 0

@@ -1,0 +1,46 @@
+EnvironmentMap: "textures/studio_small.jpg"
+
+Camera:
+  Pos: [0, 1.5, 3.0]
+  LookAt: [0, 0.5, 0]
+  FOV: 45
+
+Materials:
+  # Mat 0: CHROME SPHERE (Perfect Mirror)
+  - Color: [1.0, 1.0, 1.0]
+    Metallic: 1.0
+    Roughness: 0.0  # Perfectly smooth to show HDRI
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.45
+    SSS: 0.0
+    Bump: 0.0
+    ClearCoat: 0.0
+    Sheen: 0.0
+    Displacement: 0.0
+
+  # Mat 1: FLOOR (Rough Dark)
+  - Color: [0.1, 0.1, 0.1]
+    Metallic: 0.0
+    Roughness: 1.0
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.45
+    SSS: 0.0
+    Bump: 0.0
+    ClearCoat: 0.0
+    Sheen: 0.0
+    Displacement: 0.0
+
+Objects:
+  # Chrome Sphere
+  - Type: 0  # Sphere
+    Pos: [0, 0.5, 0]
+    Scale: [0.5, 0.5, 0.5]
+    Mat: 0
+
+  # Floor
+  - Type: 1  # Box
+    Pos: [0, -1.0, 0]
+    Scale: [10, 1, 10]
+    Mat: 1

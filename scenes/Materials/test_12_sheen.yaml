@@ -1,0 +1,21 @@
+Objects:
+  - Type: 0 # Sphere
+    Pos: [0, 0, 0]
+    Scale: [1, 1, 1]
+    Mat: 0
+
+Materials:
+  - Color: [0.5, 0.0, 0.0] # Red Velvet
+    Roughness: 0.8
+    Sheen: 1.0
+    SheenTint: 0.5
+
+Lights:
+  - Pos: [2, 4, 4]
+    Color: [1, 1, 1]
+    Intensity: 2.0
+
+Camera:
+  Pos: [0, 0, -5]
+  LookAt: [0, 0, 0]
+  FOV: 45

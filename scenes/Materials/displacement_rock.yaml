@@ -1,0 +1,44 @@
+Camera:
+  Pos: [0, 1.5, 3.0]
+  LookAt: [0, 0.5, 0]
+  FOV: 45
+
+Materials:
+  # Mat 0: ROCKY BOULDER (High Displacement)
+  - Color: [0.5, 0.4, 0.3]  # Stone gray-brown
+    Metallic: 0.0
+    Roughness: 0.9  # Rough stone surface
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.0
+    SSS: 0.0
+    Bump: 0.0
+    ClearCoat: 0.0
+    Sheen: 0.0
+    Displacement: 0.15  # Moderate displacement for rocky detail
+
+  # Mat 1: FLOOR
+  - Color: [0.2, 0.2, 0.2]
+    Metallic: 0.0
+    Roughness: 1.0
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.0
+    SSS: 0.0
+    Bump: 0.0
+    ClearCoat: 0.0
+    Sheen: 0.0
+    Displacement: 0.0
+
+Objects:
+  # Rocky Sphere (becomes irregular with displacement)
+  - Type: 0  # Sphere
+    Pos: [0, 0.5, 0]
+    Scale: [0.5, 0.5, 0.5]
+    Mat: 0
+
+  # Floor
+  - Type: 1  # Box
+    Pos: [0, -1.0, 0]
+    Scale: [10, 1, 10]
+    Mat: 1

@@ -1,0 +1,21 @@
+Objects:
+  - Type: 4 # Plane
+    Pos: [0, -1, 0]
+    Scale: [1, 1, 1]
+    Mat: 0
+
+Materials:
+  - Color: [0.8, 0.8, 0.8]
+    Metallic: 0.0
+    Roughness: 0.5
+    NormalMap: textures/brick_normal.png
+
+Lights:
+  - Pos: [2, 4, 4]
+    Color: [1, 1, 1]
+    Intensity: 2.0
+
+Camera:
+  Pos: [0, 2, -5]
+  LookAt: [0, 0, 0]
+  FOV: 45

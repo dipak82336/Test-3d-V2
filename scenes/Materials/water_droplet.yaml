@@ -1,0 +1,21 @@
+Camera:
+  Pos: [0, 1.5, 3.8]
+  LookAt: [0, 0.6, 0]
+  FOV: 50
+
+Materials:
+  - Color: [0.96, 0.98, 1.0] # Pure Water (very subtle blue)
+    Metallic: 0.0
+    Roughness: 0.01  # Nearly perfect smoothness
+    Transmission: 0.92  # High transparency like real water
+    IOR: 1.333  # Exact water IOR
+  - Color: [0.02, 0.02, 0.02] # Black floor
+    Metallic: 0.0
+    Roughness: 0.8
+
+Objects:
+  # Water Droplet - Realistic Shape
+  - Type: 0 # Sphere
+    Pos: [0, 0.6, 0]
+    Scale: [1.3, 1.1, 1.3]  # Slightly flattened droplet
+    Mat: 0

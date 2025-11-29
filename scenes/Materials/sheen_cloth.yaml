@@ -1,0 +1,43 @@
+Camera:
+  Pos: [0, 1.5, 3.0]
+  LookAt: [0, 0.5, 0]
+  FOV: 45
+
+Materials:
+  # Mat 0: RED VELVET (High Sheen)
+  - Color: [0.6, 0.1, 0.1]  # Deep red
+    Metallic: 0.0
+    Roughness: 0.8  # Rough base (fabric)
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.0
+    SSS: 0.0
+    Bump: 0.0
+    ClearCoat: 0.0
+    Sheen: 1.0  # Full sheen effect
+    SheenTint: 0.8  # Reddish sheen (80% albedo, 20% white)
+
+  # Mat 1: FLOOR
+  - Color: [0.2, 0.2, 0.2]
+    Metallic: 0.0
+    Roughness: 1.0
+    Transmission: 0.0
+    Emission: [0.0, 0.0, 0.0]
+    IOR: 1.0
+    SSS: 0.0
+    Bump: 0.0
+    ClearCoat: 0.0
+    Sheen: 0.0
+
+Objects:
+  # Velvet Sphere
+  - Type: 0  # Sphere
+    Pos: [0, 0.5, 0]
+    Scale: [0.5, 0.5, 0.5]
+    Mat: 0
+
+  # Floor
+  - Type: 1  # Box
+    Pos: [0, -1.0, 0]
+    Scale: [10, 1, 10]
+    Mat: 1
