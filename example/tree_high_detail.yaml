@@ -1,0 +1,26 @@
+scene:
+  camera:
+    position: [0.0, 1.5, 3.5]
+    look_at: [0.0, 1.0, 0.0]
+    up: [0.0, 1.0, 0.0]
+    fov: 45.0
+
+  objects:
+    - type: "tree"
+      position: [0.0, 0.0, 0.0]
+      rotation: [0.0, 0.0, 0.0]
+      scale: [1.0, 1.0, 1.0]
+      material:
+        color: [0.55, 0.45, 0.35] # Brownish bark
+        roughness: 0.9
+        metallic: 0.0
+
+  lighting:
+    ambient: [0.2, 0.2, 0.2]
+    directional:
+      - direction: [0.5, -1.0, 0.5]
+        color: [1.0, 0.95, 0.9]
+        intensity: 1.2
+      - direction: [-0.5, -0.5, -0.5]
+        color: [0.2, 0.2, 0.3]
+        intensity: 0.5
