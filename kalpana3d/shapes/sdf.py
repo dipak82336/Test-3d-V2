@@ -1,6 +1,6 @@
 import numpy as np
 from numba import njit
-from ..core.math import length, vec3, normalize, clamp
+from ..core.math import length, vec3, normalize, clamp, dot
 
 @njit(fastmath=True)
 def sdSphere(p, r):
@@ -56,3 +56,23 @@ def sdHexPrism(p, h):
        0
     )
     return min(max(d[0], d[1]), 0.0) + length(np.maximum(d, 0.0))
+
+@njit(fastmath=True)
+def sdRoundCone(p, r1, r2, h):
+    # r1: radius at bottom (y=0)
+    # r2: radius at top (y=h)
+    # h: height
+
+    # Sampling p relative to cylinder axis (y-axis)
+    # q is radial distance from y-axis
+    q = vec3(length(vec3(p[0], 0, p[2])), p[1], 0)
+
+    b = (r1 - r2) / h
+    a = np.sqrt(1.0 - b*b)
+
+    k = dot(q, vec3(-b, a, 0))
+
+    if k < 0.0: return length(q) - r1
+    if k > a*h: return length(q - vec3(0, h, 0)) - r2
+
+    return dot(q, vec3(a, b, 0)) - r1
